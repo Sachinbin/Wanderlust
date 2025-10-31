@@ -1,0 +1,138 @@
+<% layout("/layouts/boilerplate") -%>
+    <style>
+        #filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter {
+            text-align: center;
+            margin-top: 10px;
+            margin-right: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .filter p {
+            font-size: .8rem;
+        }
+
+        .filter:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+        .toggle-switch{
+            border: 1px solid black;
+            border-radius:1rem ;
+            height: 3rem;
+            width: 16rem;
+            align-items: center;
+            padding-top: 8px;
+            padding-right: 26px;
+            margin-left: 1.5rem;
+        }
+    </style>
+
+    <body>
+        <p>
+            <%= success %>
+        </p>
+       
+        <div id="filters" class="mb-3">
+            <div class="filter">
+                <div><i class="fa-solid fa-fire"></i></div>
+                <p>Tranding</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-bed"></i></div>
+                <p>Room</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p>Iconic City</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-mountain"></i></div>
+                <p>Mountain</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-chess-rook"></i></div>
+                <p>Casties</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p>Amazing Pools</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-campground"></i></div>
+                <p>Camping</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-cow"></i></div>
+                <p>Farms</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-snowflake"></i></div>
+                <p>Arcitec</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-cow"></i></div>
+                <p>Farms</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-snowflake"></i></div>
+                <p>Arcitec</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-igloo"></i></div>
+                <p>Domes</p>
+            </div>
+            <div class="filter">
+                <div><i class="fa-solid fa-ship"></i></div>
+                <p>Boats</p>
+            </div>
+            <div class="toggle-switch">
+                <div class="form-check-reverse form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                    <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <%for(let listing of allListings){%>
+                <a id="listLink" href="/listing/<%= listing._id %>">
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="<%= listing.image %>" class="card-img-top" alt="Card Image 1"
+                                style="height: 20rem;">
+
+                            <div class="card-img-overlay"></div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= listing.title %>
+                                    <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
+                                </h5>
+                                <p class="card-text text-success fw-bold">&#8377; <%= listing.price%> / night</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <%}%>
+        </div>
+
+ 
+<script>
+    let taxSwitch = document.getElementById("switchCheckDefault");
+    taxSwitch.addEventListener("click",(e)=>{
+        let taxInfo = document.getElementsByClassName("tax-info");
+        for(info of taxInfo){
+            if(info.style.display != "inline"){
+                info.style.display = "inline"
+            }else{
+                info.style.display = "none"
+            }
+        }
+
+    })
+</script>
+    </body>

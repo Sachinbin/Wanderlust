@@ -1,0 +1,118 @@
+<% layout("/layouts/boilerplate") -%>
+
+    <body>
+
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="POST" action="/listing" novalidate class="needs-validation" enctype="multipart/form-data">
+                    <h3>Create new Listing</h3>
+                    <div class="md-3">
+                        <label for="title" class="form-label"> Title </label>
+                        <input type="text" name="listing[title]" class="form-control" placeholder="Enter Title"
+                            required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="md-3">
+                        <label for="description" class="form-label"> description </label>
+                        <textarea type="text" name="listing[description]" class="form-control" required></textarea>
+                        <div class="invalid-feedback">
+                            Description should be valid!
+                        </div>
+                    </div>
+                    <div class="md-3">
+                        <label for="image" class="form-label">image </label>
+                        <input type="text" name="listing[image]" class="form-control" placeholder="Enter image url">
+
+                    </div>
+                    <!-- <div class="md-3">
+                        <label for="image" class="form-label">image </label>
+                        <input type="file" name="listing[image]" class="form-control" >
+
+                    </div> -->
+                    <div class="row">
+                        <div class="md-3 col-md-4">
+                            <label for="price" class="form-label">price </label>
+                            <input type="number" name="listing[price]" &#8377; class="form-control"
+                                placeholder="Enter price" required>
+                            <div class="invalid-feedback">
+                                Price should be valid!
+                            </div>
+
+                        </div>
+                        <div class="md-3 col-md-8">
+                            <label for="lacation" class="form-label">location </label>
+                            <input type="text" name="listing[location]" class="form-control"
+                                placeholder="Enter location" required>
+                            <div class="invalid-feedback">
+                                Location should be valid!
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="md-3">
+                        <label for="country" class="form-label">country</label>
+                        <input type="text" name="listing[country]" class="form-control" placeholder="Enter country"
+                            required>
+                        <div class="invalid-feedback">
+                            Country should be valid!
+                        </div>
+                    </div>
+                    <!-- <div class="md-3">
+                        <label for="category" class="form-label">category</label>
+                        <input type="text" name="listing[catogory]" class="form-control" placeholder="Example:- Room,Mountain,etc" required>
+                        <div class="invalid-feedback">
+                            Country should be valid!
+                        </div>
+                    </div> -->
+                    <br><br>
+                    <button class="btn btn-dark btn-color">Add</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
+    </body>
+
+
+    <!-- <body>
+    <h3>Create new Listing</h3>
+    <form method="POST" action="/listing">
+        <div>
+
+        </div>
+        <input type="text" placeholder="Enter the Title" name="title">
+        <br><br>
+        <textarea type="text" placeholder="Enter the description" name="description"></textarea>
+        <br><br>
+        <input type="text" placeholder="Enter the url" name="image">
+        <br><br>
+        <input type="number" placeholder="Enter the price" name="price">
+        <br><br>
+        <input type="text" placeholder="Enter the location" name="location">
+        <br><br>
+        <input type="text" placeholder="Enter the country" name="country">
+        <br><br>
+        <button>Add</button>
+    </form>
+</body> -->

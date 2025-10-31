@@ -1,0 +1,82 @@
+<% layout("/layouts/boilerplate") -%>
+
+    <body>
+        <div class="row">
+            <div class="col-8 offset-2">
+                <form method="POST" action="/listing/<%= editListing._id %>?_method=PUT" novalidate
+                    class="needs-validation">
+                    <div class="md-3">
+                        <label for="title" class="form-label"> Title </label>
+                        <input type="text" value="<%= editListing.title %>" name="listing[title]" class="form-control" required>
+                        <div class="invalid-feedback">
+                                Title should be valid!
+                            </div>
+                    </div>
+                    <div class="md-3">
+                        <label for="description" class="form-label"> description </label>
+                        <textarea type="text" name="listing[description]" class="form-control" required><%= editListing.description %></textarea>
+                        <div class="invalid-feedback">
+                                Description should be valid!
+                            </div>
+                    </div>
+                    <div class="mb-3">
+                        original Listing image
+                        <br>
+                        <img src="<%= originalImage %>" style="max-width: 150px; max-height: 150px; background-size: cover; opacity: 0.8;" >
+                    </div>
+                    <div class="md-3">
+                        <label for="image" class="form-label">image </label>
+                        <input value="<%= editListing.image %>" type="text" name="listing[image]" class="form-control">
+                        
+                    </div>
+                    <div class="row">
+                        <div class="md-3 col-md-4">
+                            <label for="price" class="form-label">price </label>
+                            <input type="number" value="&#8377;<%= editListing.price %>" name="listing[price]"
+                                class="form-control" required>
+                            <div class="invalid-feedback">
+                                Price should be valid!
+                            </div>    
+                        </div>
+                        <div class="md-3 col-md-8">
+                            <label for="lacation" class="form-label">location </label>
+                            <input type="text" value="<%= editListing.location %>" name="listing[location]" class="form-control" required>
+                            <div class="invalid-feedback">
+                                Location should be valid!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md-3">
+                        <label for="country" class="form-label">country</label>
+                        <input type="text" value="<%= editListing.country %>" name="listing[country]" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Country should be valid!
+                        </div>
+                    </div>
+                    <br><br>
+                    <button class="btn btn-dark btn-color">Update</button>
+                </form>
+            </div>
+        </div>
+        <script>
+            (() => {
+                'use strict'
+
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                const forms = document.querySelectorAll('.needs-validation')
+
+                // Loop over them and prevent submission
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
+        </script>
+        </script>
+    </body>
